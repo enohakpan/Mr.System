@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Mr. System - Creative Visionary</title>
+	<link rel="stylesheet" href="styles.css">
+	<!-- favicon -->
+	<link rel="icon" type="image/x-icon" href="images/logo.jpg">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+	<!-- Loading Screen -->
+	<div class="loading-screen" id="loading-screen">
+		<div class="loading-content">
+			<div class="loading-logo">
+				<div class="logo-animation">
+					<span>MR</span>
+					<span>SYSTEM</span>
+				</div>
+			</div>
+			<div class="loading-progress">
+				<div class="progress-bar"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Navigation -->
+	<nav class="navbar" id="navbar">
+		<div class="nav-container">
+			<div class="nav-logo">
+				<div class="logo-text">
+					<img src="images/logo.jpg" alt="logo" class="logo-image">
+					<span class="logo-main">Nsikak</span>
+					<span class="logo-sub">Akpan</span>
+				</div>
+			</div>
+			<ul class="nav-menu" id="nav-menu">
+				<li class="nav-item">
+					<a href="#home" class="nav-link" data-section="0">
+						<span class="nav-text">Home</span>
+						<span class="nav-indicator"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#about" class="nav-link" data-section="1">
+						<span class="nav-text">About</span>
+						<span class="nav-indicator"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#services" class="nav-link" data-section="2">
+						<span class="nav-text">Services</span>
+						<span class="nav-indicator"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#portfolio" class="nav-link" data-section="3">
+						<span class="nav-text">Portfolio</span>
+						<span class="nav-indicator"></span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="#contact" class="nav-link" data-section="4">
+						<span class="nav-text">Contact</span>
+						<span class="nav-indicator"></span>
+					</a>
+				</li>
+			</ul>
+			<div class="nav-toggle">
+				<button class="hamburger" id="hamburger">
+					<span class="hamburger-line"></span>
+					<span class="hamburger-line"></span>
+					<span class="hamburger-line"></span>
+				</button>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Main Container -->
+	<div class="main-container" id="main-container">
+
+		<!-- Section 1: Hero/Home -->
+		<section class="section active" id="home">
+			<div class="section-background">
+				<div class="gradient-orb orb-1"></div>
+				<div class="gradient-orb orb-2"></div>
+				<div class="gradient-orb orb-3"></div>
+			</div>
+			<div class="section-content">
+				<div class="hero-content">
+					<div class="hero-text">
+						<div class="hero-badge">
+							<span class="badge-text">Creative Professional</span>
+							<div class="badge-glow"></div>
+						</div>
+						<h1 class="hero-title">
+							<span class="title-line" data-text="Creative">Creative</span>
+							<span class="title-line" data-text="Visionary">Visionary</span>
+						</h1>
+						<div class="hero-subtitle">
+							<span class="subtitle-item">Videographer</span>
+							<span class="subtitle-separator">•</span>
+							<span class="subtitle-item">Video Editor</span>
+							<span class="subtitle-separator">•</span>
+							<span class="subtitle-item">Content Creator</span>
+							<span class="subtitle-separator">•</span>
+							<span class="subtitle-item">Social Media Manager</span>
+						</div>
+						<div class="hero-description">
+							<p>Transforming ideas into captivating visual stories that engage, inspire, and drive results through
+								cutting-edge creativity and technical excellence.</p>
+						</div>
+						<div class="hero-buttons">
+							<button class="btn btn-primary" onclick="scrollToSection(3)">
+								<span class="btn-text">View Portfolio</span>
+								<span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+							</button>
+							<button class="btn btn-secondary" onclick="scrollToSection(4)">
+								<span class="btn-text">Get In Touch</span>
+								<span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+							</button>
+						</div>
+						<div class="hero-stats">
+							<div class="stat-item">
+								<span class="stat-number">150+</span>
+								<span class="stat-label">Projects</span>
+							</div>
+							<div class="stat-item">
+								<span class="stat-number">50+</span>
+								<span class="stat-label">Clients</span>
+							</div>
+							<div class="stat-item">
+								<span class="stat-number">5+</span>
+								<span class="stat-label">Years</span>
+							</div>
+						</div>
+					</div>
+					<div class="hero-visual">
+						<div class="floating-elements">
+							<div class="floating-card card-1">
+								<div class="card-icon">
+									<i class="fas fa-video"></i>
+								</div>
+								<span class="card-text">Video Production</span>
+								<div class="card-glow"></div>
+							</div>
+							<div class="floating-card card-2">
+								<div class="card-icon">
+									<i class="fas fa-cut"></i>
+								</div>
+								<span class="card-text">Video Editing</span>
+								<div class="card-glow"></div>
+							</div>
+							<div class="floating-card card-3">
+								<div class="card-icon">
+									<i class="fas fa-share-alt"></i>
+								</div>
+								<span class="card-text">Social Media</span>
+								<div class="card-glow"></div>
+							</div>
+							<div class="floating-card card-4">
+								<div class="card-icon">
+									<i class="fas fa-palette"></i>
+								</div>
+								<span class="card-text">Creative Content</span>
+								<div class="card-glow"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="scroll-indicator">
+				<div class="scroll-text">Scroll to explore</div>
+				<div class="scroll-arrow">
+					<div class="arrow-line"></div>
+					<div class="arrow-head"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2: About -->
+		<section class="section" id="about">
+			<div class="section-content scrollable-content">
+				<div class="section-header">
+					<div class="section-badge">
+						<span>About Me</span>
+					</div>
+					<h2 class="section-title">Crafting Digital Excellence</h2>
+					<div class="title-underline"></div>
+					<p class="section-subtitle">Passionate about creating visual stories that resonate and inspire</p>
+				</div>
+
+				<div class="about-content">
+					<div class="about-main">
+						<div class="about-intro">
+							<h3>Professional Journey</h3>
+							<p>With years of experience in the digital creative industry, I specialize in bringing brands to life
+								through compelling visual storytelling and strategic content creation. My approach combines technical
+								expertise with creative vision to deliver exceptional results.</p>
+
+							<div class="experience-timeline">
+								<div class="timeline-item">
+									<div class="timeline-year">2019</div>
+									<div class="timeline-content">
+										<h4>Started Freelancing</h4>
+										<p>Began my journey in video production and editing</p>
+									</div>
+								</div>
+								<div class="timeline-item">
+									<div class="timeline-year">2021</div>
+									<div class="timeline-content">
+										<h4>Expanded Services</h4>
+										<p>Added social media management and content strategy</p>
+									</div>
+								</div>
+								<div class="timeline-item">
+									<div class="timeline-year">2023</div>
+									<div class="timeline-content">
+										<h4>Full-Service Studio</h4>
+										<p>Established comprehensive creative solutions</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="skills-section">
+							<h3>Core Expertise</h3>
+							<div class="skills-grid">
+								<div class="skill-item">
+									<div class="skill-icon">
+										<i class="fas fa-video"></i>
+									</div>
+									<div class="skill-content">
+										<h4>Videography</h4>
+										<p>Professional video production from concept to completion</p>
+										<div class="skill-progress">
+											<div class="progress-bar" data-progress="95"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill-item">
+									<div class="skill-icon">
+										<i class="fas fa-edit"></i>
+									</div>
+									<div class="skill-content">
+										<h4>Video Editing</h4>
+										<p>Advanced post-production and motion graphics</p>
+										<div class="skill-progress">
+											<div class="progress-bar" data-progress="98"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill-item">
+									<div class="skill-icon">
+										<i class="fas fa-bullhorn"></i>
+									</div>
+									<div class="skill-content">
+										<h4>Content Creation</h4>
+										<p>Engaging content that resonates with your audience</p>
+										<div class="skill-progress">
+											<div class="progress-bar" data-progress="92"></div>
+										</div>
+									</div>
+								</div>
+								<div class="skill-item">
+									<div class="skill-icon">
+										<i class="fas fa-chart-line"></i>
+									</div>
+									<div class="skill-content">
+										<h4>Social Media</h4>
+										<p>Strategic social media management and growth</p>
+										<div class="skill-progress">
+											<div class="progress-bar" data-progress="90"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="tools-section">
+							<h3>Tools & Software</h3>
+							<div class="tools-grid">
+								<div class="tool-item">
+									<span class="tool-name">Adobe Premiere Pro</span>
+								</div>
+								<div class="tool-item">
+									<span class="tool-name">After Effects</span>
+								</div>
+								<div class="tool-item">
+									<span class="tool-name">DaVinci Resolve</span>
+								</div>
+								<div class="tool-item">
+									<span class="tool-name">Final Cut Pro</span>
+								</div>
+								<div class="tool-item">
+									<span class="tool-name">Photoshop</span>
+								</div>
+								<div class="tool-item">
+									<span class="tool-name">Illustrator</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="about-sidebar">
+						<div class="stats-card">
+							<h3>By the Numbers</h3>
+							<div class="stats-list">
+								<div class="stat-item">
+									<div class="stat-number" data-target="150">0</div>
+									<div class="stat-label">Projects Completed</div>
+								</div>
+								<div class="stat-item">
+									<div class="stat-number" data-target="50">0</div>
+									<div class="stat-label">Happy Clients</div>
+								</div>
+								<div class="stat-item">
+									<div class="stat-number" data-target="5">0</div>
+									<div class="stat-label">Years Experience</div>
+								</div>
+								<div class="stat-item">
+									<div class="stat-number" data-target="1000">0</div>
+									<div class="stat-label">Hours of Content</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="testimonial-card">
+							<div class="testimonial-content">
+								<p>"Mr. System delivered exceptional video content that exceeded our expectations. His attention to
+									detail and creative vision are unmatched."</p>
+								<div class="testimonial-author">
+									<strong>Sarah Johnson</strong>
+									<span>Marketing Director</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 3: Services -->
+		<section class="section" id="services">
+			<div class="section-content scrollable-content">
+				<div class="section-header">
+					<div class="section-badge">
+						<span>Services</span>
+					</div>
+					<h2 class="section-title">What I Offer</h2>
+					<div class="title-underline"></div>
+					<p class="section-subtitle">Comprehensive creative solutions tailored to your brand's unique needs</p>
+				</div>
+
+				<div class="services-grid">
+					<div class="service-card">
+						<div class="service-header">
+							<div class="service-icon">
+								<i class="fas fa-video"></i>
+							</div>
+							<h3>Video Production</h3>
+						</div>
+						<p class="service-description">From corporate videos to creative campaigns, I deliver high-quality video
+							content that tells your story effectively and engages your audience.</p>
+						<ul class="service-features">
+							<li><i class="fas fa-check"></i>Corporate Videos</li>
+							<li><i class="fas fa-check"></i>Promotional Content</li>
+							<li><i class="fas fa-check"></i>Event Coverage</li>
+							<li><i class="fas fa-check"></i>Product Showcases</li>
+							<li><i class="fas fa-check"></i>Documentary Style</li>
+						</ul>
+						<div class="service-pricing">
+							<span class="price">Starting at $500</span>
+						</div>
+					</div>
+
+					<div class="service-card featured">
+						<div class="featured-badge">Most Popular</div>
+						<div class="service-header">
+							<div class="service-icon">
+								<i class="fas fa-cut"></i>
+							</div>
+							<h3>Video Editing</h3>
+						</div>
+						<p class="service-description">Professional post-production services including color grading, motion
+							graphics, and advanced editing techniques to bring your vision to life.</p>
+						<ul class="service-features">
+							<li><i class="fas fa-check"></i>Color Correction & Grading</li>
+							<li><i class="fas fa-check"></i>Motion Graphics</li>
+							<li><i class="fas fa-check"></i>Audio Enhancement</li>
+							<li><i class="fas fa-check"></i>Visual Effects</li>
+							<li><i class="fas fa-check"></i>Multi-Camera Editing</li>
+						</ul>
+						<div class="service-pricing">
+							<span class="price">Starting at $300</span>
+						</div>
+					</div>
+
+					<div class="service-card">
+						<div class="service-header">
+							<div class="service-icon">
+								<i class="fas fa-lightbulb"></i>
+							</div>
+							<h3>Content Creation</h3>
+						</div>
+						<p class="service-description">Creative content strategies that engage your audience and build meaningful
+							connections with your brand across all platforms.</p>
+						<ul class="service-features">
+							<li><i class="fas fa-check"></i>Content Strategy</li>
+							<li><i class="fas fa-check"></i>Brand Storytelling</li>
+							<li><i class="fas fa-check"></i>Creative Campaigns</li>
+							<li><i class="fas fa-check"></i>Visual Branding</li>
+							<li><i class="fas fa-check"></i>Script Writing</li>
+						</ul>
+						<div class="service-pricing">
+							<span class="price">Starting at $400</span>
+						</div>
+					</div>
+
+					<div class="service-card">
+						<div class="service-header">
+							<div class="service-icon">
+								<i class="fas fa-share-alt"></i>
+							</div>
+							<h3>Social Media Management</h3>
+						</div>
+						<p class="service-description">Complete social media solutions to grow your online presence and engage with
+							your target audience effectively.</p>
+						<ul class="service-features">
+							<li><i class="fas fa-check"></i>Platform Management</li>
+							<li><i class="fas fa-check"></i>Content Scheduling</li>
+							<li><i class="fas fa-check"></i>Community Engagement</li>
+							<li><i class="fas fa-check"></i>Analytics & Reporting</li>
+							<li><i class="fas fa-check"></i>Influencer Outreach</li>
+						</ul>
+						<div class="service-pricing">
+							<span class="price">Starting at $800/month</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="process-section">
+					<h3>My Process</h3>
+					<div class="process-steps">
+						<div class="process-step">
+							<div class="step-number">01</div>
+							<div class="step-content">
+								<h4>Discovery</h4>
+								<p>Understanding your vision, goals, and requirements</p>
+							</div>
+						</div>
+						<div class="process-step">
+							<div class="step-number">02</div>
+							<div class="step-content">
+								<h4>Planning</h4>
+								<p>Developing strategy and creative concepts</p>
+							</div>
+						</div>
+						<div class="process-step">
+							<div class="step-number">03</div>
+							<div class="step-content">
+								<h4>Production</h4>
+								<p>Bringing your vision to life with precision</p>
+							</div>
+						</div>
+						<div class="process-step">
+							<div class="step-number">04</div>
+							<div class="step-content">
+								<h4>Delivery</h4>
+								<p>Final review and project completion</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 4: Portfolio -->
+		<section class="section" id="portfolio">
+			<div class="section-content scrollable-content">
+				<div class="section-header">
+					<div class="section-badge">
+						<span>Portfolio</span>
+					</div>
+					<h2 class="section-title">Recent Work</h2>
+					<div class="title-underline"></div>
+					<p class="section-subtitle">A showcase of creative projects and successful collaborations</p>
+				</div>
+
+				<div class="portfolio-filters">
+					<button class="filter-btn active" data-filter="all">
+						<span>All Projects</span>
+					</button>
+					<button class="filter-btn" data-filter="video">
+						<span>Video Production</span>
+					</button>
+					<button class="filter-btn" data-filter="editing">
+						<span>Video Editing</span>
+					</button>
+					<button class="filter-btn" data-filter="social">
+						<span>Social Media</span>
+					</button>
+				</div>
+
+				<div class="portfolio-grid">
+					<div class="portfolio-item" data-category="video">
+						<div class="portfolio-image">
+							<img src="images/camera.jpg" alt="Corporate Brand Video">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Video Production</div>
+									<h4>Corporate Brand Video</h4>
+									<p>Professional brand storytelling for tech startup</p>
+									<div class="portfolio-links">
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Corporate Brand Video</h4>
+							<p>Tech Startup</p>
+						</div>
+					</div>
+
+					<div class="portfolio-item" data-category="editing">
+						<div class="portfolio-image">
+							<img src="images/music-video2.jpg" alt="Music Video Edit">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Video Editing</div>
+									<h4>Music Video Edit</h4>
+									<p>Creative editing with motion graphics and effects</p>
+									<div class="portfolio-links">
+										<a href="images/music-video.mp4" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Music Video Edit</h4>
+							<p>Independent Artist</p>
+						</div>
+					</div>
+
+					<div class="portfolio-item" data-category="social">
+						<div class="portfolio-image">
+							<img src="/placeholder.svg?height=300&width=400" alt="Social Media Campaign">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Social Media</div>
+									<h4>Social Media Campaign</h4>
+									<p>Multi-platform content strategy and execution</p>
+									<div class="portfolio-links">
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Social Media Campaign</h4>
+							<p>Fashion Brand</p>
+						</div>
+					</div>
+
+					<div class="portfolio-item" data-category="video">
+						<div class="portfolio-image">
+							<img src="images/movie-set5.jpg" alt="Product Showcase">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Video Production</div>
+									<h4>Movie Production</h4>
+									<p>High-end product videography and cinematography</p>
+									<div class="portfolio-links">
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Movie Production</h4>
+							<p>Nollywood Movie : Deception Point</p>
+						</div>
+					</div>
+
+					<div class="portfolio-item" data-category="editing">
+						<div class="portfolio-image">
+							<img src="images/editing2.jpg" alt="Documentary Edit">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Video Editing</div>
+									<h4>Movie Edit</h4>
+									<p>Narrative-driven storytelling and post-production</p>
+									<div class="portfolio-links">
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Movie Edit</h4>
+							<p>Nollywood Movie : Money on My Mind </p>
+						</div>
+					</div>
+
+					<div class="portfolio-item" data-category="social">
+						<div class="portfolio-image">
+							<img src="images/tv-presentation.jpg" alt="Instagram Content">
+							<div class="portfolio-overlay">
+								<div class="portfolio-info">
+									<div class="portfolio-category">Social Media</div>
+									<h4>Instagram Content Series</h4>
+									<p>Engaging visual content creation and curation</p>
+									<div class="portfolio-links">
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-play"></i>
+										</a>
+										<a href="#" class="portfolio-link">
+											<i class="fas fa-external-link-alt"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="portfolio-details">
+							<h4>Instagram Content Series</h4>
+							<p>Lifestyle Brand</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="portfolio-cta">
+					<h3>Ready to Start Your Project?</h3>
+					<p>Let's discuss how we can bring your vision to life</p>
+					<button class="btn btn-primary" onclick="scrollToSection(4)">
+						<span class="btn-text">Start a Project</span>
+						<span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+					</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 5: Contact -->
+		<section class="section" id="contact">
+			<div class="section-content scrollable-content">
+				<div class="section-header">
+					<div class="section-badge">
+						<span>Contact</span>
+					</div>
+					<h2 class="section-title">Let's Create Together</h2>
+					<div class="title-underline"></div>
+					<p class="section-subtitle">Ready to bring your vision to life? Let's start the conversation</p>
+				</div>
+
+				<div class="contact-content">
+					<div class="contact-info">
+						<div class="contact-card">
+							<h3>Get in Touch</h3>
+							<p>I'm always excited to work on new projects and collaborate with creative minds. Whether you have a
+								specific vision or need guidance on your next project, I'm here to help.</p>
+
+							<div class="contact-methods">
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="fas fa-envelope"></i>
+									</div>
+									<div class="contact-details">
+										<h4>Email</h4>
+										<p>shootersbase@gmail.com</p>
+										<a href="https://mail.google.com/mail/?view=cm&fs=1&to=shootersbase@gmail.com" class="contact-link">Send Email</a>
+									</div>
+								</div>
+
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="fas fa-phone"></i>
+									</div>
+									<div class="contact-details">
+										<h4>Phone</h4>
+										<p>+2349037889395</p>
+										<a href="tel:+2349037889395" class="contact-link">Call Now</a>
+									</div>
+								</div>
+
+								<div class="contact-item">
+									<div class="contact-icon">
+										<i class="fas fa-map-marker-alt"></i>
+									</div>
+									<div class="contact-details">
+										<h4>Location</h4>
+										<p>Available Worldwide</p>
+										<span class="contact-link">Remote & On-site</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="social-section">
+								<h4>Follow My Work</h4>
+								<div class="social-links">
+									<a href="#" class="social-link">
+										<i class="fab fa-instagram"></i>
+										<span>Instagram</span>
+									</a>
+									<a href="#" class="social-link">
+										<i class="fab fa-youtube"></i>
+										<span>YouTube</span>
+									</a>
+									<a href="#" class="social-link">
+										<i class="fab fa-linkedin"></i>
+										<span>LinkedIn</span>
+									</a>
+									<a href="#" class="social-link">
+										<i class="fab fa-twitter"></i>
+										<span>Twitter</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="contact-form-section">
+						<div class="contact-form-card">
+							<h3>Start Your Project</h3>
+							<form id="contactForm" class="contact-form">
+								<div class="form-row">
+									<div class="form-group">
+										<label for="name">Full Name</label>
+										<input type="text" id="name" name="name" placeholder="Your full name" required>
+									</div>
+									<div class="form-group">
+										<label for="email">Email Address</label>
+										<input type="email" id="email" name="email" placeholder="your@email.com" required>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group">
+										<label for="company">Company</label>
+										<input type="text" id="company" name="company" placeholder="Your company name">
+									</div>
+									<div class="form-group">
+										<label for="budget">Budget Range</label>
+										<select id="budget" name="budget" required>
+											<option value="">Select budget range</option>
+											<option value="under-1k">Under $1,000</option>
+											<option value="1k-5k">$1,000 - $5,000</option>
+											<option value="5k-10k">$5,000 - $10,000</option>
+											<option value="10k-plus">$10,000+</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="service">Service Needed</label>
+									<select id="service" name="service" required>
+										<option value="">Select a service</option>
+										<option value="video-production">Video Production</option>
+										<option value="video-editing">Video Editing</option>
+										<option value="content-creation">Content Creation</option>
+										<option value="social-media">Social Media Management</option>
+										<option value="multiple">Multiple Services</option>
+									</select>
+								</div>
+
+								<div class="form-group">
+									<label for="message">Project Details</label>
+									<textarea id="message" name="message"
+										placeholder="Tell me about your project, goals, timeline, and any specific requirements..." rows="5"
+										required></textarea>
+								</div>
+
+								<button type="submit" class="btn btn-primary btn-full">
+									<span class="btn-text">Send Message</span>
+									<span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="contact-footer">
+					<div class="response-time">
+						<i class="fas fa-clock"></i>
+						<span>Typical response time: 24 hours</span>
+					</div>
+					<div class="availability">
+						<i class="fas fa-calendar"></i>
+						<span>Available for new projects</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<!-- Section Indicators -->
+	<div class="section-indicators">
+		<div class="indicator active" data-section="0">
+			<span class="indicator-label">Home</span>
+		</div>
+		<div class="indicator" data-section="1">
+			<span class="indicator-label">About</span>
+		</div>
+		<div class="indicator" data-section="2">
+			<span class="indicator-label">Services</span>
+		</div>
+		<div class="indicator" data-section="3">
+			<span class="indicator-label">Portfolio</span>
+		</div>
+		<div class="indicator" data-section="4">
+			<span class="indicator-label">Contact</span>
+		</div>
+	</div>
+
+	<!-- Transition Prompt -->
+	<div class="transition-prompt" id="transition-prompt">
+		<div class="prompt-content">
+			<span class="prompt-text"></span>
+			<div class="prompt-icon">
+				<i class="fas fa-arrow-down"></i>
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+
+</html>

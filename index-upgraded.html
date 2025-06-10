@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mr. System - Creative Visionary</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-animation">
+                    <span>MR</span>
+                    <span>SYSTEM</span>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-text">
+                    <span class="logo-main">MR</span>
+                    <span class="logo-sub">SYSTEM</span>
+                </div>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link" data-section="0">
+                        <span class="nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-section="1">
+                        <span class="nav-text">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link" data-section="2">
+                        <span class="nav-text">Services</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#portfolio" class="nav-link" data-section="3">
+                        <span class="nav-text">Portfolio</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-section="4">
+                        <span class="nav-text">Contact</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <button class="hamburger" id="hamburger">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container" id="main-container">
+        
+        <!-- Section 1: Hero/Home -->
+        <section class="section active" id="home">
+            <!-- Content from original index.html -->
+        </section>
+
+        <!-- Section 2: About -->
+        <section class="section" id="about">
+            <!-- Content from original index.html -->
+        </section>
+
+        <!-- Section 3: Services -->
+        <section class="section" id="services">
+            <!-- Content from original index.html -->
+        </section>
+
+        <!-- Section 4: Portfolio -->
+        <section class="section" id="portfolio">
+            <!-- Content from original index.html -->
+        </section>
+
+        <!-- Section 5: Contact -->
+        <section class="section" id="contact">
+            <!-- Content from original index.html -->
+        </section>
+    </div>
+
+    <!-- Section Indicators -->
+    <div class="section-indicators">
+        <div class="indicator active" data-section="0">
+            <span class="indicator-label">Home</span>
+        </div>
+        <div class="indicator" data-section="1">
+            <span class="indicator-label">About</span>
+        </div>
+        <div class="indicator" data-section="2">
+            <span class="indicator-label">Services</span>
+        </div>
+        <div class="indicator" data-section="3">
+            <span class="indicator-label">Portfolio</span>
+        </div>
+        <div class="indicator" data-section="4">
+            <span class="indicator-label">Contact</span>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="scroll-progress-container">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="navigation-upgrade.js"></script>
+</body>
+</html>

@@ -87,7 +87,7 @@ function setupEventListeners() {
   // Contact form
   const contactForm = document.getElementById("contactForm")
   if (contactForm) {
-    contactForm.addEventListener("submit", handleContactForm)
+    contactForm.addEventListener("submit", sendEmail)
   }
 
   // Add scroll event listeners to scrollable sections
@@ -529,31 +529,63 @@ function handlePortfolioFilter(e) {
 }
 
 // Handle contact form submission
-function handleContactForm(e) {
-  e.preventDefault()
+function sendEmail(e) {
+    e.preventDefault();
+    console.log('Form submission triggered');
 
-  const formData = new FormData(e.target)
-  const submitBtn = e.target.querySelector('button[type="submit"]')
-  const originalText = submitBtn.querySelector(".btn-text").textContent
+    const formData = new FormData(e.target);
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalText = submitBtn.querySelector(".btn-text").textContent;
 
-  // Show loading state
-  submitBtn.querySelector(".btn-text").textContent = "Sending..."
-  submitBtn.querySelector(".btn-icon i").className = "fas fa-spinner fa-spin"
-  submitBtn.disabled = true
+    // Show loading state
+    submitBtn.querySelector(".btn-text").textContent = "Sending...";
+    submitBtn.querySelector(".btn-icon i").className = "fas fa-spinner fa-spin";
+    submitBtn.disabled = true;
 
-  // Simulate form submission
-  setTimeout(() => {
-    // Show success message
-    showNotification("Message sent successfully! I'll get back to you soon.", "success")
+    // Prepare email with all form data
+    const templateParams = {
+        to_email: 'dashdash59600@gmail.com',
+        from_name: formData.get('name'),
+        email: formData.get('email'),
+        message: `
+New Contact Form Submission:
 
-    // Reset form
-    e.target.reset()
+Name: ${formData.get('name')}
+Email: ${formData.get('email')}
+Company: ${formData.get('company')}
+Budget Range: ${formData.get('budget')}
+Service Needed: ${formData.get('service')}
 
-    // Reset button
-    submitBtn.querySelector(".btn-text").textContent = originalText
-    submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane"
-    submitBtn.disabled = false
-  }, 2000)
+Message:
+${formData.get('message')}
+        `
+    };
+
+    console.log('Sending form data...');
+
+    // Send email with form data
+    emailjs.send('service_8tuaw9y', 'template_f7i4c8d', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            showNotification("Message sent successfully! I'll get back to you soon.", "success");
+            
+            // Reset form
+            e.target.reset();
+            
+            // Reset button
+            submitBtn.querySelector(".btn-text").textContent = originalText;
+            submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane";
+            submitBtn.disabled = false;
+        })
+        .catch(function(error) {
+            console.error('FAILED...', error);
+            showNotification(`Failed to send: ${error.text || 'Please try again later.'}`, "error");
+            submitBtn.querySelector(".btn-text").textContent = originalText;
+            submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane";
+            submitBtn.disabled = false;
+        });
+
+    return false;
 }
 
 // Show notification

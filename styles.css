@@ -1588,6 +1588,29 @@ body {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+.form-group select,
+.form-group select option {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.form-group select {
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: var(--blur-sm);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group select option {
+  padding: 1rem;
+  background-color: var(--bg-secondary) !important;
+}
+
 .btn-full {
   width: 100%;
   justify-content: center;

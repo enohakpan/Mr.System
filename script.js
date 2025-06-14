@@ -514,7 +514,7 @@ function sendEmail(e) {
 
     // Prepare email with all form data
     const templateParams = {
-        to_email: 'dashdash59600@gmail.com',
+        to_email: 'shootersbase@gmail.com',
         from_name: formData.get('name'),
         email: formData.get('email'),
         message: `
@@ -534,7 +534,7 @@ ${formData.get('message')}
     console.log('Sending form data...');
 
     // Send email with form data
-    emailjs.send('service_8tuaw9y', 'template_f7i4c8d', templateParams)
+    emailjs.send('service_i67y9ng', 'template_fa4ikwv', templateParams, '6Ck4_F_SiyurEgCA6')
         .then(function(response) {
             console.log('SUCCESS!', response.status, response.text);
             showNotification("Message sent successfully! I'll get back to you soon.", "success");

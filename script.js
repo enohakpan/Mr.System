@@ -238,14 +238,11 @@ function handleKeydown(e) {
 
   switch (e.key) {
     case "ArrowUp":
-    case "PageUp":
-    case "w":
-    case "k":
       e.preventDefault()
       if (scrollableContent) {
         // Scroll within section if not at top
         if (scrollableContent.scrollTop > 0) {
-          scrollableContent.scrollTop -= e.key === "PageUp" ? scrollableContent.clientHeight / 2 : scrollAmount
+          scrollableContent.scrollTop -= scrollAmount
         } else if (currentSection > 0) {
           // At top of section, transition to previous section
           handleSectionTransition("up")
@@ -256,15 +253,12 @@ function handleKeydown(e) {
       break
 
     case "ArrowDown":
-    case "PageDown":
-    case "s":
-    case "j":
       e.preventDefault()
       if (scrollableContent) {
         const maxScroll = scrollableContent.scrollHeight - scrollableContent.clientHeight
         // Scroll within section if not at bottom
         if (scrollableContent.scrollTop < maxScroll) {
-          scrollableContent.scrollTop += e.key === "PageDown" ? scrollableContent.clientHeight / 2 : scrollAmount
+          scrollableContent.scrollTop += scrollAmount
         } else if (currentSection < totalSections - 1) {
           // At bottom of section, transition to next section
           handleSectionTransition("down")
@@ -273,30 +267,6 @@ function handleKeydown(e) {
         handleSectionTransition("down")
       }
       break
-
-    case " ": // Spacebar
-      e.preventDefault() // Prevent default space behavior
-      if (scrollableContent) {
-        const maxScroll = scrollableContent.scrollHeight - scrollableContent.clientHeight
-        // Scroll down with spacebar, shift+space scrolls up
-        if (e.shiftKey && scrollableContent.scrollTop > 0) {
-          scrollableContent.scrollTop -= scrollableContent.clientHeight / 2
-        } else if (!e.shiftKey && scrollableContent.scrollTop < maxScroll) {
-          scrollableContent.scrollTop += scrollableContent.clientHeight / 2
-        } else if (e.shiftKey && scrollableContent.scrollTop <= 0 && currentSection > 0) {
-          handleSectionTransition("up")
-        } else if (!e.shiftKey && scrollableContent.scrollTop >= maxScroll && currentSection < totalSections - 1) {
-          handleSectionTransition("down")
-        }
-      } else {
-        // For non-scrollable sections
-        if (e.shiftKey && currentSection > 0) {
-          handleSectionTransition("up")
-        } else if (!e.shiftKey && currentSection < totalSections - 1) {
-          handleSectionTransition("down")
-        }
-      }
-      break;
 
     case "Home":
       e.preventDefault()

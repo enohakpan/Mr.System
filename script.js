@@ -418,10 +418,10 @@ function animateCounters() {
     const updateCounter = () => {
       if (current < target) {
         current += increment
-        counter.textContent = Math.ceil(current)
+        counter.textContent = Math.ceil(current) + "+"
         requestAnimationFrame(updateCounter)
       } else {
-        counter.textContent = target
+        counter.textContent = target + "+"
       }
     }
 

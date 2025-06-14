@@ -21,23 +21,32 @@ const loadingScreen = document.getElementById("loading-screen")
 
 // Initialize the page
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM Content Loaded")
+
+  // Force immediate reset
+  currentSection = 0
+  window.scrollTo(0, 0)
+
   initializeLoading()
   setupEventListeners()
-  
+
   // Ensure first section is visible
-  currentSection = 0
-  mainContainer.style.transform = "translateY(0)"
-  
+  mainContainer.style.transform = "translateY(0vh)"
+
   // Make sure all sections are properly initialized
   sections.forEach((section, index) => {
     section.classList.toggle("active", index === 0)
+    section.style.display = "block"
   })
-  
+
   updateActiveStates()
   initializeAnimations()
-  
+
   // Force trigger animations for first section
   triggerSectionAnimations()
+
+  // Ensure navbar is visible
+  navbar.classList.remove("navbar-hidden")
 })
 
 // Initialize loading screen
@@ -71,7 +80,7 @@ function setupEventListeners() {
   indicators.forEach((indicator) => {
     indicator.addEventListener("click", handleIndicatorClick)
   })
-  
+
   // Create navigation buttons
   createNavigationButtons()
 
@@ -148,14 +157,14 @@ function handleWheel(e) {
 
   // If section has scrollable content, handle internal scrolling only
   if (scrollableContent) {
-    const isAtBottom = 
+    const isAtBottom =
       scrollableContent.scrollHeight - scrollableContent.scrollTop - scrollableContent.clientHeight <= 10
-    
+
     // Show navigation buttons when at bottom of scrollable content
     if (isAtBottom) {
       showNavigationButtons()
     }
-    
+
     // Allow normal scrolling within the section, but prevent section transitions
     e.preventDefault()
     if (delta > 0 && scrollableContent.scrollTop < scrollableContent.scrollHeight - scrollableContent.clientHeight) {
@@ -173,7 +182,7 @@ function handleWheel(e) {
 function handleSectionTransition(direction) {
   // Show navigation buttons
   showNavigationButtons()
-  
+
   // Directly proceed with transition without double-scroll requirement
   if (direction === "down" && currentSection < totalSections - 1) {
     scrollToSection(currentSection + 1)
@@ -182,7 +191,7 @@ function handleSectionTransition(direction) {
     scrollToSection(currentSection - 1)
     return true
   }
-  
+
   // Hide any transition prompts
   hideTransitionPrompt()
   return false
@@ -280,16 +289,18 @@ function handleKeydown(e) {
   }
 }
 
-// Handle navigation clicks
+// Handle navigation clicks - FIXED VERSION
 function handleNavClick(e) {
   e.preventDefault()
   const target = e.target.closest("[data-section]")
   if (!target) return
-  
+
   const sectionIndex = Number.parseInt(target.getAttribute("data-section"))
-  if (!isNaN(sectionIndex)) {
+  console.log("Nav click - target section:", sectionIndex) // Debug log
+
+  if (!isNaN(sectionIndex) && sectionIndex >= 0 && sectionIndex < totalSections) {
     scrollToSection(sectionIndex)
-    
+
     // Close mobile menu if open
     if (navMenu.classList.contains("active")) {
       toggleMobileMenu()
@@ -297,26 +308,45 @@ function handleNavClick(e) {
   }
 }
 
-// Handle indicator clicks
+// Handle indicator clicks - FIXED VERSION
 function handleIndicatorClick(e) {
+  e.preventDefault()
   const target = e.target.closest("[data-section]")
   if (!target) return
-  
+
   const sectionIndex = Number.parseInt(target.getAttribute("data-section"))
-  if (!isNaN(sectionIndex)) {
+  console.log("Indicator click - target section:", sectionIndex) // Debug log
+
+  if (!isNaN(sectionIndex) && sectionIndex >= 0 && sectionIndex < totalSections) {
     scrollToSection(sectionIndex)
   }
 }
 
-// Scroll to specific section
+// Scroll to specific section - IMPROVED VERSION
 function scrollToSection(sectionIndex) {
   // Validate section index
-  if (isNaN(sectionIndex) || sectionIndex < 0 || sectionIndex >= totalSections) return
-  
-  // Prevent scrolling if already scrolling or same section
-  if (isScrolling || sectionIndex === currentSection) return
+  if (isNaN(sectionIndex) || sectionIndex < 0 || sectionIndex >= totalSections) {
+    console.error("Invalid section index:", sectionIndex)
+    return
+  }
 
-  console.log(`Scrolling to section: ${sectionIndex}`)
+  // Prevent scrolling if already scrolling
+  if (isScrolling) {
+    console.log("Already scrolling, ignoring request")
+    return
+  }
+
+  console.log(`Scrolling from section ${currentSection} to section ${sectionIndex}`)
+
+  // Allow same section to reset scroll position
+  if (sectionIndex === currentSection) {
+    const scrollableContent = sections[currentSection].querySelector(".scrollable-content")
+    if (scrollableContent) {
+      scrollableContent.scrollTop = 0
+    }
+    return
+  }
+
   isScrolling = true
   currentSection = sectionIndex
 
@@ -342,21 +372,26 @@ function scrollToSection(sectionIndex) {
 
   // Show navigation buttons
   showNavigationButtons()
-  
-  // Update active states
+
+  // Update active states immediately
   updateActiveStates()
 
   // Trigger section-specific animations
-  triggerSectionAnimations()
+  setTimeout(() => {
+    triggerSectionAnimations()
+  }, 100)
 
   // Reset scrolling flag after animation completes
   setTimeout(() => {
     isScrolling = false
+    console.log(`Finished scrolling to section ${currentSection}`)
   }, 800)
 }
 
-// Update active states for navigation and indicators
+// Update active states for navigation and indicators - IMPROVED VERSION
 function updateActiveStates() {
+  console.log("Updating active states for section:", currentSection)
+
   // Update indicators
   indicators.forEach((indicator, index) => {
     indicator.classList.toggle("active", index === currentSection)
@@ -367,9 +402,12 @@ function updateActiveStates() {
     link.classList.toggle("active", index === currentSection)
   })
 
-  // Update sections
+  // Update sections - ensure all sections remain visible but only current is active
   sections.forEach((section, index) => {
     section.classList.toggle("active", index === currentSection)
+    // Keep all sections visible - let CSS transform handle positioning
+    section.style.display = "block"
+    section.style.opacity = index === currentSection ? "1" : "1"
   })
 }
 
@@ -395,11 +433,11 @@ function triggerSectionAnimations() {
       animatePortfolioItems()
     }, 300)
   }
-  
+
   // For first section (hero), ensure it's fully visible
   if (currentSection === 0) {
     const heroElements = currentSectionElement.querySelectorAll(".fade-in, .slide-in")
-    heroElements.forEach(el => {
+    heroElements.forEach((el) => {
       el.style.opacity = "1"
       el.style.transform = "translateY(0)"
     })
@@ -500,62 +538,72 @@ function handlePortfolioFilter(e) {
 
 // Handle contact form submission
 function sendEmail(e) {
-    e.preventDefault();
-    console.log('Form submission triggered');
+  e.preventDefault()
+  console.log("Form submission triggered")
 
-    const formData = new FormData(e.target);
-    const submitBtn = e.target.querySelector('button[type="submit"]');
-    const originalText = submitBtn.querySelector(".btn-text").textContent;
+  const formData = new FormData(e.target)
+  const submitBtn = e.target.querySelector('button[type="submit"]')
+  const originalText = submitBtn.querySelector(".btn-text").textContent
 
-    // Show loading state
-    submitBtn.querySelector(".btn-text").textContent = "Sending...";
-    submitBtn.querySelector(".btn-icon i").className = "fas fa-spinner fa-spin";
-    submitBtn.disabled = true;
+  // Show loading state
+  submitBtn.querySelector(".btn-text").textContent = "Sending..."
+  submitBtn.querySelector(".btn-icon i").className = "fas fa-spinner fa-spin"
+  submitBtn.disabled = true
 
-    // Prepare email with all form data
-    const templateParams = {
-        to_email: 'shootersbase@gmail.com',
-        from_name: formData.get('name'),
-        email: formData.get('email'),
-        message: `
+  // Prepare email with all form data
+  const templateParams = {
+    to_email: "shootersbase@gmail.com",
+    from_name: formData.get("name"),
+    email: formData.get("email"),
+    message: `
 New Contact Form Submission:
 
-Name: ${formData.get('name')}
-Email: ${formData.get('email')}
-Company: ${formData.get('company')}
-Budget Range: ${formData.get('budget')}
-Service Needed: ${formData.get('service')}
+Name: ${formData.get("name")}
+Email: ${formData.get("email")}
+Company: ${formData.get("company")}
+Budget Range: ${formData.get("budget")}
+Service Needed: ${formData.get("service")}
 
 Message:
-${formData.get('message')}
-        `
-    };
+${formData.get("message")}
+        `,
+  }
 
-    console.log('Sending form data...');
+  console.log("Sending form data...")
 
+  // Check if emailjs is available before using it
+  if (typeof emailjs !== "undefined") {
     // Send email with form data
-    emailjs.send('service_i67y9ng', 'template_fa4ikwv', templateParams, '6Ck4_F_SiyurEgCA6')
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            showNotification("Message sent successfully! I'll get back to you soon.", "success");
-            
-            // Reset form
-            e.target.reset();
-            
-            // Reset button
-            submitBtn.querySelector(".btn-text").textContent = originalText;
-            submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane";
-            submitBtn.disabled = false;
-        })
-        .catch(function(error) {
-            console.error('FAILED...', error);
-            showNotification(`Failed to send: ${error.text || 'Please try again later.'}`, "error");
-            submitBtn.querySelector(".btn-text").textContent = originalText;
-            submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane";
-            submitBtn.disabled = false;
-        });
+    emailjs
+      .send("service_i67y9ng", "template_fa4ikwv", templateParams, "6Ck4_F_SiyurEgCA6")
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text)
+        showNotification("Message sent successfully! I'll get back to you soon.", "success")
 
-    return false;
+        // Reset form
+        e.target.reset()
+
+        // Reset button
+        submitBtn.querySelector(".btn-text").textContent = originalText
+        submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane"
+        submitBtn.disabled = false
+      })
+      .catch((error) => {
+        console.error("FAILED...", error)
+        showNotification(`Failed to send: ${error.text || "Please try again later."}`, "error")
+        submitBtn.querySelector(".btn-text").textContent = originalText
+        submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane"
+        submitBtn.disabled = false
+      })
+  } else {
+    console.error("emailjs is not defined. Make sure it's properly loaded.")
+    showNotification("Failed to send: emailjs is not loaded. Please try again later.", "error")
+    submitBtn.querySelector(".btn-text").textContent = originalText
+    submitBtn.querySelector(".btn-icon i").className = "fas fa-paper-plane"
+    submitBtn.disabled = false
+  }
+
+  return false
 }
 
 // Show notification
@@ -619,8 +667,8 @@ function hideTransitionPrompt() {
 }
 
 // Variables for navigation buttons
-let navButtonsTimeout = null;
-let navButtonsVisible = false;
+let navButtonsTimeout = null
+let navButtonsVisible = false
 
 // Create navigation buttons for section transitions
 function createNavigationButtons() {
@@ -629,7 +677,7 @@ function createNavigationButtons() {
   if (existingButtons) {
     document.body.removeChild(existingButtons)
   }
-  
+
   // Create container for navigation buttons
   const navButtonsContainer = document.createElement("div")
   navButtonsContainer.className = "section-nav-buttons"
@@ -641,7 +689,7 @@ function createNavigationButtons() {
       <i class="fas fa-chevron-down"></i>
     </button>
   `
-  
+
   // Add styles for the buttons
   const style = document.createElement("style")
   style.textContent = `
@@ -691,18 +739,18 @@ function createNavigationButtons() {
       }
     }
   `
-  
+
   // Add to document
   document.head.appendChild(style)
   document.body.appendChild(navButtonsContainer)
-  
+
   // Add event listeners
   const prevBtn = document.getElementById("prevSectionBtn")
   const nextBtn = document.getElementById("nextSectionBtn")
-  
+
   prevBtn.addEventListener("click", () => handleSectionTransition("up"))
   nextBtn.addEventListener("click", () => handleSectionTransition("down"))
-  
+
   // Show buttons on hover near the edge
   document.addEventListener("mousemove", (e) => {
     const edgeThreshold = 100
@@ -710,7 +758,7 @@ function createNavigationButtons() {
       showNavigationButtons()
     }
   })
-  
+
   // Keep buttons visible when hovering over them
   navButtonsContainer.addEventListener("mouseenter", () => {
     if (navButtonsTimeout) {
@@ -718,28 +766,28 @@ function createNavigationButtons() {
       navButtonsTimeout = null
     }
   })
-  
+
   navButtonsContainer.addEventListener("mouseleave", () => {
     hideNavigationButtonsWithDelay()
   })
-  
+
   // Update button states based on current section
   function updateButtonStates() {
     prevBtn.disabled = currentSection === 0
     prevBtn.style.opacity = currentSection === 0 ? "0.5" : "1"
     prevBtn.style.pointerEvents = currentSection === 0 ? "none" : "auto"
-    
+
     nextBtn.disabled = currentSection === totalSections - 1
     nextBtn.style.opacity = currentSection === totalSections - 1 ? "0.5" : "1"
     nextBtn.style.pointerEvents = currentSection === totalSections - 1 ? "none" : "auto"
   }
-  
+
   // Initial update
   updateButtonStates()
-  
+
   // Update on section change
   const originalUpdateActiveStates = updateActiveStates
-  updateActiveStates = function() {
+  updateActiveStates = () => {
     originalUpdateActiveStates()
     updateButtonStates()
     showNavigationButtons()
@@ -752,7 +800,7 @@ function showNavigationButtons() {
   if (navButtons) {
     navButtons.classList.add("visible")
     navButtonsVisible = true
-    
+
     // Auto-hide after delay
     hideNavigationButtonsWithDelay()
   } else {
@@ -773,7 +821,7 @@ function hideNavigationButtonsWithDelay() {
   if (navButtonsTimeout) {
     clearTimeout(navButtonsTimeout)
   }
-  
+
   navButtonsTimeout = setTimeout(() => {
     const navButtons = document.querySelector(".section-nav-buttons")
     if (navButtons) {
@@ -833,19 +881,85 @@ window.scrollToSection = scrollToSection
 // Add smooth scrolling behavior
 document.documentElement.style.scrollBehavior = "smooth"
 
-// Ensure page is properly initialized on load
+// Ensure page is properly initialized on load and page refresh
 window.addEventListener("load", () => {
-  // Reset to first section if page was reloaded
-  if (window.performance && performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-    currentSection = 0
-    mainContainer.style.transform = "translateY(0)"
-    
-    // Update active states
-    updateActiveStates()
-    
-    // Trigger animations for first section
-    triggerSectionAnimations()
-  }
+  console.log("Page loaded, initializing...")
+
+  // Force reset to first section on page load or reload
+  currentSection = 0
+
+  // Immediately set transform to ensure we're at the top
+  mainContainer.style.transform = "translateY(0vh)"
+
+  // Force scroll to top of the page
+  window.scrollTo(0, 0)
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+
+  // Ensure all sections are visible but positioned correctly
+  sections.forEach((section, index) => {
+    section.style.display = "block"
+    section.classList.toggle("active", index === 0)
+  })
+
+  // Reset scroll positions for all sections
+  sections.forEach((section) => {
+    const scrollableContent = section.querySelector(".scrollable-content")
+    if (scrollableContent) {
+      scrollableContent.scrollTop = 0
+    }
+  })
+
+  // Reset last scroll position
+  lastScrollTop = 0
+
+  // Update active states
+  updateActiveStates()
+
+  // Trigger animations for first section
+  triggerSectionAnimations()
+
+  // Ensure navbar is visible for home section
+  navbar.classList.remove("navbar-hidden")
+
+  console.log("Page initialization complete")
+})
+
+// Handle page refresh and ensure we're at the top
+window.addEventListener("beforeunload", () => {
+  // Reset scroll position before page unloads
+  window.scrollTo(0, 0)
+})
+
+// Additional handling for page show event
+window.addEventListener("pageshow", (e) => {
+  console.log("Page show event triggered")
+
+  // Always reset to home section regardless of cache
+  currentSection = 0
+  mainContainer.style.transform = "translateY(0vh)"
+
+  // Force scroll to top
+  window.scrollTo(0, 0)
+  document.documentElement.scrollTop = 0
+  document.body.scrollTop = 0
+
+  // Update states
+  updateActiveStates()
+  triggerSectionAnimations()
+
+  // Ensure navbar is visible
+  navbar.classList.remove("navbar-hidden")
+})
+
+// Handle browser back/forward buttons
+window.addEventListener("popstate", () => {
+  console.log("Popstate event triggered")
+  currentSection = 0
+  mainContainer.style.transform = "translateY(0vh)"
+  window.scrollTo(0, 0)
+  updateActiveStates()
+  triggerSectionAnimations()
 })
 
 // Preload critical resources

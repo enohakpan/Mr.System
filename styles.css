@@ -1893,6 +1893,14 @@ body {
   .hero-cta .btn {
     width: 100%;
   }
+
+  .section-nav-buttons {
+    display: none;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
